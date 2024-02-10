@@ -14,7 +14,8 @@ SUPABASE_KEY="my anon api key"
 # This will be appended to the SUPABASE_URL
 API_ENDPOINT="/rest/v1/events"
 
-MY_APP='my-event-log'
+
+MY_APP='y2p-event-log-2024'
 
 # HTTP Header parameters
 # Data will be JSON
@@ -23,7 +24,22 @@ REQ_HEADER='Content-type: application/json'
 # Saving data to API via POST request
 REQ_METHOD='POST'
 
+# show instructions
+
+# this script
+# ./insert.sh
+
+# pub
+# mosquitto_pub -h broker.hivemq.com -t my-event-log/computer/description/level/service/type/user -m 3,crash,error,database,update,admin
+
+echo "run this script (./insert.sh) in one terminal"
+echo "To publish, open another terminal, then:"
+echo "mosquitto_pub -h broker.hivemq.com -t y2p-event-log-2024/computer/description/level/service/type/user -m 3,crash,error,database,update,admin"
+echo "check the first terminal and your database for results"
+
 echo 'starting...'
+
+# Main loop
 
 # mosquitto_sub -v -h localhost -t myapp/# | while read line
 mosquitto_sub -v -h broker.hivemq.com -t $MY_APP/# | while read line
@@ -107,16 +123,3 @@ do
         echo $response
 
 done
-
-# test
-
-# this script
-# ./insert.sh
-
-# pub
-# mosquitto_pub -h broker.hivemq.com -t my-event-log/computer/description/level/service/type/user -m 3,crash,error,database,update,admin
-
-echo "run this script (./insert.sh) in one terminal"
-echo "To publish, open another terminal, then:"
-echo "mosquitto_pub -h broker.hivemq.com -t my-event-log/computer/description/level/service/type/user -m 3,crash,error,database,update,admin"
-echo "check the first terminal and your database for results"
