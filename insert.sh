@@ -34,7 +34,7 @@ REQ_METHOD='POST'
 
 echo "run this script (./insert.sh) in one terminal"
 echo "To publish, open another terminal, then:"
-echo "mosquitto_pub -h broker.hivemq.com -t y2p-event-log-2024/computer/description/level/service/type/user -m 3,crash,error,database,update,admin"
+echo "mosquitto_pub -h broker.hivemq.com -t $MY_APP/computer/description/level/service/type/user -m 3,crash,error,database,update,admin"
 echo "check the first terminal and your database for results"
 
 echo 'starting...'
